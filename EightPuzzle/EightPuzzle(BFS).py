@@ -79,7 +79,7 @@ class State:   # 创建一个状态类
             path = []  # 创建一个存放路径节点的list
             for s in subStates:  # 遍历n的所有子状态
                 if (s.state == s.answer).all():  # 如果目前状态等于answer，则代表路径有解
-                    while s.parent and s.parent != s1:  # 递归回溯节点，存入路径list中
+                    while s.parent and s.parent != self:  # 递归回溯节点，存入路径list中
                         path.append(s.parent)
                         s = s.parent
                     path.reverse()  # 最后把路径list顺序调转一下
