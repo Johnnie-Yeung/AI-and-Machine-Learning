@@ -70,7 +70,7 @@ class State:   # 创建一个状态类
         openTable = []
         closeTable = []
         openTable.append(self)  # 把起始节点S放到未扩展节点OPEN表中
-        steps = 1
+        steps = 0
 
         while len(openTable) > 0:
             n = openTable.pop(0)  # 取出open表中的首节点
