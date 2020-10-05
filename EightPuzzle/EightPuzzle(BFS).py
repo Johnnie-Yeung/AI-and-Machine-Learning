@@ -24,8 +24,8 @@ class State:   # 创建一个状态类
 
     # 得到空的那个位置，返回它的row,col两个参数
     def getEmptyPos(self):
-        postion = np.where(self.state == self.symbol)
-        return postion
+        position = np.where(self.state == self.symbol)
+        return position
 
     # 获取子状态，即前进一步之后可能的状态，函数输出子状态列表
     def generateSubStates(self):
