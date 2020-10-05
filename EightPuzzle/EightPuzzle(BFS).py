@@ -100,6 +100,7 @@ if __name__ == '__main__':
     originState = np.array([[2, 8, 3], [1, 6, 4], [7, EmptySymbol, 5]])
     # 设置矩阵最终状态
     answer1 = np.array([[1, 2, 3], [8, EmptySymbol, 4], [7, 6, 5]])
+
     s1 = State(state=originState, answer=answer1)
     path, steps = s1.BFS_search()
     if path:    # 如果找到通关路径
@@ -117,6 +118,8 @@ if __name__ == '__main__':
         print(s1.answer)
         print("Total steps is", steps)
         print('---------------------------')
+    else:
+        print('Cannot find a solution.')
 
 end = time.perf_counter()  # 结束计时
 print('Running Time:', end-start, 'seconds')
