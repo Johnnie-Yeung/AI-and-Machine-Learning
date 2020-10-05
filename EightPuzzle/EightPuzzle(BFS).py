@@ -27,7 +27,7 @@ class State:   # 创建一个状态类
         postion = np.where(self.state == self.symbol)
         return postion
 
-    # 获取子状态，即前进一步之后可能的状态
+    # 获取子状态，即前进一步之后可能的状态，函数输出子状态列表
     def generateSubStates(self):
         if not self.direction:  # 如果已经无路可走，就直接return一个空的子状态list
             return []
@@ -73,7 +73,7 @@ class State:   # 创建一个状态类
         steps = 1
 
         while len(openTable) > 0:
-            n = openTable.pop(0)  # 取出open表中的第一个节点
+            n = openTable.pop(0)  # 取出open表中的首节点
             closeTable.append(n)  # 把这个节点放进close表中
             subStates = n.generateSubStates()  # 得到节点n的所有子状态
             path = []  # 创建一个存放路径节点的list
