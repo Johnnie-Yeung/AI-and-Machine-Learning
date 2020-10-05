@@ -5,7 +5,7 @@ import time  # 计算程序运行时间
 
 class State:   # 创建一个状态类
     def __init__(self, state, answer, last_pos_direction=None, parent=None):
-        self.state = state  # state是一个状态，输入为list，呈现为(3，3)的矩阵
+        self.state = state  # state是一个状态，输入为np.array，呈现为(3，3)的矩阵
         self.answer = answer
         self.direction = ['up', 'down', 'left', 'right']
         if last_pos_direction:  # 代表上一步的那个方向，避免走重复的路
