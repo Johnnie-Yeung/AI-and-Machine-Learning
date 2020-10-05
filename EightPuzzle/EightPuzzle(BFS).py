@@ -109,9 +109,9 @@ if __name__ == '__main__':
         s1.PrintState()  # 把初始状态显示出来
         count = 1
         for n in path:  # 打印路径
-                print('[' + str(count) + ']')
-                n.PrintState()
-                count += 1
+            print('[' + str(count) + ']')
+            n.PrintState()
+            count += 1
         print('The answer is:')
         print(' ')
         print(s1.answer)
