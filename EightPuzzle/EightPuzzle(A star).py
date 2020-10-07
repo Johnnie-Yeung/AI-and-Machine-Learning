@@ -32,6 +32,15 @@ class State:
         position = np.where(self.state == self.symbol)
         return position
 
+    # 获取父节点的状态的「空置位」的位置
+    def get_last_empty(self):
+        if self.parent:
+            temp = self.parent.state
+            i, j = np.where(temp == self.symbol)
+            return i, j
+        else:
+            return None, None
+
     # 基于BFS搜索算法改进的A*算法
     def A_star(self):
         openTable = []
@@ -57,15 +66,17 @@ class State:
                 for j in range(3):
                     c = n.state.copy()
                     if (i + j - row - col) ** 2 == 1:  # 找到c[row, col]（即空格的位置）的邻居位置
-                        c[row, col] = c[i, j]
-                        c[i, j] = self.symbol
-                        # 生成子状态
-                        newState = State(c, self.answer)
-                        newState.parent = n  # 此时取出的节点n成为新节点的父节点
-                        newState.g = n.g + 1  # 新节点的g(n)要在父节点的g(n)基础上+1
-                        newState.h = newState.hn()  # 新节点的启发函数值
-                        newState.f = newState.g + newState.h  # 新节点的估价函数值
-                        openTable.append(newState)  # 加入open表中
+                        a, b = self.get_last_empty()
+                        if a != i or b != j:  # 如果这个邻居位置不是上一步走过的位置
+                            c[row, col] = c[i, j]
+                            c[i, j] = self.symbol
+                            # 生成子状态
+                            newState = State(c, self.answer)
+                            newState.parent = n  # 此时取出的节点n成为新节点的父节点
+                            newState.g = n.g + 1  # 新节点的g(n)要在父节点的g(n)基础上+1
+                            newState.h = newState.hn()  # 新节点的启发函数值
+                            newState.f = newState.g + newState.h  # 新节点的估价函数值
+                            openTable.append(newState)  # 加入open表中
             list_sort(openTable)  # open表中的节点按照f(n)大小排序
             steps += 1
         else:
